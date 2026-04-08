@@ -30,6 +30,7 @@ exports.calcularIMC = (req, res) => {
       legenda: legenda
     })
   } catch(error){
-    return res.status(500).json({error: "bugô"})
+    return res.status(500).json({error: "Erro interno do servidor"})
   }
 }
+

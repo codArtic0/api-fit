@@ -1,10 +1,11 @@
 const express = require('express')
 const app = express()
 
-const helloRoutes = require('./routes/imcRoutes')
+const imcRoutes = require('./routes/imcRoutes')
+const macrosRoutes = require('./routes/macrosRoutes')
 
 app.use(express.json())
 
-app.use('/api', helloRoutes)
+app.use('/api', imcRoutes, macrosRoutes)
 
 module.exports = app
