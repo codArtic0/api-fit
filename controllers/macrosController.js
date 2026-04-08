@@ -1,7 +1,7 @@
 exports.calcularMacros = (req,res) => {
-  const {peso, altura, idade, sexo, atividade, totalDeficit} = req.body
+  const {peso, altura, idade, sexo, atividade, balancoCalorico} = req.body
 
-  if (!peso || !altura || !idade || !sexo || !atividade || !totalDeficit){
+  if (!peso || !altura || !idade || !sexo || !atividade ){
     return res.status(400).json({error: "Preencha todos os campos"})
   }
 
@@ -26,7 +26,7 @@ exports.calcularMacros = (req,res) => {
 
     const tdee = Number((tmb * fatorAtividade[atividade]).toFixed(2))
     
-    const caloriasTotais = Number((tdee - totalDeficit).toFixed(2))
+    const caloriasTotais = Number((tdee + balancoCalorico).toFixed(2))
     const proteinas = Number((peso * 2).toFixed(2))
     const gorduras = Number(peso * 0.8.toFixed(2))
     const carboidratos = Number((((caloriasTotais) - (proteinas * 4 + gorduras * 9)) / 4).toFixed(2))
