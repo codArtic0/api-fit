@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 
-const helloRoutes = require('./routes/helloRoutes')
+const helloRoutes = require('./routes/imcRoutes')
 
 app.use(express.json())
 
