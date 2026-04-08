@@ -9,6 +9,10 @@ exports.calcularMacros = (req,res) => {
     return res.status(400).json({error: "Sexo só pode ser M ou F"})
   }
 
+  if (atividade < 0 || atividade > 4){
+    return res.status(400).json({error: "Atividade deve ser entre 0 e 4"})
+  }
+
   try{
     let tmb;
     if (sexo == "M"){
@@ -18,13 +22,7 @@ exports.calcularMacros = (req,res) => {
       tmb = Number(((10*peso) + (6.25*altura) - (5*idade) - 161).toFixed(2))
     }
 
-    const fatorAtividade = {
-      "sedentario": 1.2,
-      "leve": 1.375,
-      "moderado": 1.55,
-      "alto": 1.725,
-      "extremo": 1.9
-    }
+    const fatorAtividade = [1.2, 1.375, 1.55, 1.725, 1.9]
 
     const tdee = Number((tmb * fatorAtividade[atividade]).toFixed(2))
     
