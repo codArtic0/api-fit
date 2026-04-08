@@ -15,3 +15,27 @@ model Alimento {
   carboidrato  Float?
   gordura      Float?
 }
+
+enum Sexo {
+  M
+  F
+}
+
+enum Alvo {
+  BULKING
+  CUTTING
+}
+
+model User {
+  id               Int     @id @default(autoincrement())
+  nome             String
+  peso             Float?
+  altura           Float?
+  idade            Int
+  sexo             Sexo?
+  atividade        Int
+  balancoCalorico  Int
+  alvo             Alvo?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}

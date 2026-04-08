@@ -16,8 +16,6 @@ exports.getAlimentoByName = async (req, res) => {
     } catch (error) {
         return res.status(500).json({error: "Erro interno do servidor"})
     }
-
-    
 }
 
 exports.getManyAlimentos = async (req, res) =>{
