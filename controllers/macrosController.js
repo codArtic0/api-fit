@@ -1,5 +1,11 @@
 exports.calcularMacros = (req,res) => {
-  const {peso, altura, idade, sexo, atividade, balancoCalorico, alvo} = req.body
+  const peso = Number(req.body.peso)
+  const altura = Number(req.body.altura)
+  const idade = Number(req.body.idade)
+  const sexo = req.body.sexo
+  const atividade = Number(req.body.atividade)
+  const balancoCalorico = Number(req.body.balancoCalorico)
+  const alvo = req.body.alvo
 
   if (!peso || !altura || !idade || !sexo || !atividade ){
     return res.status(400).json({error: "Preencha todos os campos"})
