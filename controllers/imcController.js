@@ -8,13 +8,6 @@ exports.calcularIMC = (req, res) => {
   }
 
   try{
-
-    const { peso, altura } = req.body;
-
-    if (!peso || !altura) {
-      return res.status(400).json({ error: "Preencha todos os campos obrigatórios" });
-    }
-
     const dados = {
       peso: Number(peso),
       altura: Number(altura)
