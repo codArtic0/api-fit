@@ -36,6 +36,7 @@ model User {
   atividade        Int?
   balancoCalorico  Int?
   alvo             Alvo?
+  imc              Float?
   tmb              Float?
   tdee             Float?
   calorias         Float?

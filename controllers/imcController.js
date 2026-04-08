@@ -1,3 +1,5 @@
+const { calculadoraDeIMC } = require("../services/imcSevices");
+
 exports.calcularIMC = (req, res) => {
   const { peso, altura } = req.body
   
@@ -6,7 +8,19 @@ exports.calcularIMC = (req, res) => {
   }
 
   try{
-    const imc = (peso/(altura*altura))
+
+    const { peso, altura } = req.body;
+
+    if (!peso || !altura) {
+      return res.status(400).json({ error: "Preencha todos os campos obrigatórios" });
+    }
+
+    const dados = {
+      peso: Number(peso),
+      altura: Number(altura)
+    };
+
+    const imc = calculadoraDeIMC(dados)
     let legenda
 
     if (imc < 18.5){

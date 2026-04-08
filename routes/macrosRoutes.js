@@ -3,6 +3,6 @@ const router = express.Router()
 
 const { calcularMacros } = require('../controllers/macrosController')
 
-router.post('/macros', calcularMacros)
+router.post('/calcular', calcularMacros)
 
 module.exports = router

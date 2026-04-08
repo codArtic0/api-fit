@@ -3,6 +3,6 @@ const router = express.Router()
 
 const { calcularIMC } = require('../controllers/imcController')
 
-router.post('/imc', calcularIMC)
+router.post('/calcular', calcularIMC)
 
 module.exports = router
