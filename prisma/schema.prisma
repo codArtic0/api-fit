@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Alimento {
+  id           Int     @id @default(autoincrement())
+  nome         String
+  calorias     Float?
+  proteina     Float?
+  carboidrato  Float?
+  gordura      Float?
+}
