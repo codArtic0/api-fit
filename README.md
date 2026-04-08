@@ -1,73 +1,77 @@
-# 🍎 NutriCalc API - Calculadora de Macronutrientes e IMC
+# 🍎 API FIT - Planejamento Nutricional Inteligente
 
-O NutriCalc é uma API desenvolvida em Node.js para auxiliar no planejamento nutricional e avaliação física. O sistema calcula a Taxa Metabólica Basal (TMB), o Gasto Energético Total (TDEE), a distribuição de macronutrientes e o Índice de Massa Corporal (IMC).
+O APIFit é uma API robusta desenvolvida em Node.js para auxiliar no planejamento nutricional e avaliação física. Além de realizar cálculos complexos de TMB, TDEE e Macronutrientes, o sistema realiza a persistência de perfis de usuários em um banco de dados relacional.
 
 ---
 
 ## 📂 Estrutura do Projeto
 
-A API segue o padrão arquitetural MVC para garantir organização e separação de responsabilidades:
+A API utiliza a arquitetura MVC (Model-View-Controller) integrada ao Prisma ORM para garantir organização e escalabilidade:
 
-* **config/**: Arquivos de configuração global e variáveis de ambiente.
-* **controllers/**: Contém a lógica de negócio (cálculos de macros e IMC).
-* **models/**: Definição das estruturas de dados e comunicação com banco de dados.
-* **routes/**: Gerenciamento dos endpoints e métodos HTTP.
-* **app.js**: Configuração central do Express e middlewares.
-* **server.js**: Inicialização do servidor e escuta da porta.
+* **controllers/**: Lógica de recebimento de requisições e orquestração dos dados.
+* **services/**: Motores de cálculo (IMC, TMB e Macros) isolados.
+* **prisma/**: Definição do Schema, Enums e histórico de Migrations.
+* **lib/**: Instância centralizada e otimizada do Prisma Client.
+* **routes/**: Gerenciamento dos endpoints RESTful.
+* **app.js**: Configuração do Express e middlewares.
 
 ---
 
 ## 🚀 Tecnologias Utilizadas
 
-* Node.js
-* Express
-* Mifflin-St Jeor (Equação para TMB)
-* Nodemon (Ambiente de desenvolvimento)
+* **Node.js & Express**: Ambiente de execução e framework web.
+* **Prisma ORM**: Gerenciamento de banco de dados e tipagem.
+* **PostgreSQL**: Banco de dados relacional para persistência.
+* **Nodemon**: Ferramenta de auxílio ao desenvolvimento.
+* **Mifflin-St Jeor**: Equação utilizada para o cálculo de TMB.
 
 ---
 
 ## 📌 Documentação da API
 
-### 1. Calcular Macronutrientes
-**Endpoint:** `POST /api/macros`
+### 1. Criar e Calcular Usuário (Persistência)
+**Endpoint:** `POST /api/user/create`  
+Calcula todos os parâmetros nutricionais e salva o perfil completo no banco de dados.
 
-**Corpo da Requisição (JSON):**
+**Exemplo de Corpo da Requisição (JSON):**
 {
-  "peso": 70,
-  "altura": 175,
-  "idade": 25,
+  "nome": "Fulano",
+  "peso": 80,
+  "altura": 185,
+  "idade": 19,
   "sexo": "M",
-  "atividade": 2,
-  "balancoCalorico": 300,
-  "alvo": "Bulking"
+  "atividade": 3,
+  "balancoCalorico": -500,
+  "alvo": "Cutting"
 }
 
-### 2. Calcular IMC
-**Endpoint:** `POST /api/imc`
-
-**Corpo da Requisição (JSON):**
-{
-  "peso": 70,
-  "altura": 175
-}
+### 2. Endpoints de Cálculo Rápido (Sem persistência)
+* `POST /api/macros`: Retorna os cálculos de TMB, TDEE e Macros.
+* `POST /api/imc`: Retorna o valor do IMC e sua classificação.
 
 ---
 
 ## 🛠️ Como Executar o Projeto
 
-1.  Clone o repositório:
-    git clone https://github.com/codartic0/api-fit.git
+1. **Clone o repositório:**
+   git clone https://github.com/codartic0/api-fit.git
+   cd api-fit
 
-2.  Instale as dependências:
-    npm install
+2. **Instale as dependências:**
+   npm install
 
-3.  Configure as variáveis de ambiente:
-    Crie um arquivo .env baseado no .env.example.
+3. **Configure as variáveis de ambiente:**
+   Crie um arquivo `.env` na raiz do projeto com as seguintes chaves:
+   DATABASE_URL="postgresql://USUARIO:SENHA@localhost:5432/NOME_DO_BANCO?schema=public"
+   PORT=3000
 
-4.  Inicie o servidor:
-    npm start (ou npm run dev com nodemon)
+4. **Sincronize o banco de dados:**
+   npx prisma migrate dev
 
-O servidor estará rodando em http://localhost:PORT (PORT definido no seu .env) por padrão.
+5. **Inicie o servidor:**
+   npm run dev
+
+O servidor estará rodando em http://localhost:3000 por padrão.
 
 ---
 
