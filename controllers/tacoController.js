@@ -11,8 +11,12 @@ exports.getAlimentoByName = async (req, res) => {
                 }
             }
         })
-
-        return res.status(200).json(alimento)
+        if (alimento){
+            return res.status(200).json(alimento)
+        }
+        else{
+            return res.status(404).json({error: "alimento não encontrado!"})
+        }
     } catch (error) {
         return res.status(500).json({error: "Erro interno do servidor"})
     }
@@ -29,8 +33,12 @@ exports.getManyAlimentos = async (req, res) =>{
                 }
             }
         })
-
-        return res.status(200).json(alimentos)
+        if (alimentos.length>0){
+            return res.status(200).json(alimentos)
+        }
+        else{
+            return res.status(404).json({error: "alimento não encontrado!"})
+        }
     } catch (error) {
         return res.status(500).json({error: "Erro interno do servidor"})
     }
