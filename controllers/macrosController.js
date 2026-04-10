@@ -30,7 +30,6 @@ exports.calcularMacros = (req, res) => {
     
     return res.status(200).json(resultados);
   } catch (error) {
-    console.error(error);
     return res.status(500).json({ error: "Erro interno ao calcular macros" });
   }
 };

@@ -15,7 +15,6 @@ exports.createUser = async (req, res) => {
       altura: Number(altura)
     };
     const imc = calculadoraDeIMC(dadosIMC);
-    console.log("IMC:", imc)
 
     const dadosMacros = {
       peso: dadosIMC.peso,
@@ -28,7 +27,6 @@ exports.createUser = async (req, res) => {
     };
 
     const macros = calculadoraDeMacros(dadosMacros);
-    console.log("Macros:", macros)
 
     const dadosUser = {
       nome,
@@ -48,7 +46,6 @@ exports.createUser = async (req, res) => {
       carboidratos: macros.carboidratos,
     };
 
-    console.log("DADOS PARA O BANCO:", dadosUser)
     const user = await prisma.user.create({ data: dadosUser });
 
     return res.status(201).json(user);
