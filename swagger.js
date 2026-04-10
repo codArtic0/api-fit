@@ -9,17 +9,13 @@ const options = {
       description: 'API para cálculo de IMC, macronutrientes e busca de alimentos da tabela TACO',
       contact: {
         name: 'Support',
-        url: 'https://github.com',
+        url: 'https://github.com/codartic0',
       },
     },
     servers: [
       {
         url: 'http://localhost:3000',
         description: 'Development server',
-      },
-      {
-        url: 'http://localhost:5000',
-        description: 'Production server',
       },
     ],
     components: {
