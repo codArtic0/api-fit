@@ -51,7 +51,6 @@ exports.createUser = async (req, res) => {
     return res.status(201).json(user);
 
   } catch (error) {
-    console.error("Erro ao criar usuário:", error);
     return res.status(500).json({ error: "Erro interno ao processar os dados." });
   }
 }

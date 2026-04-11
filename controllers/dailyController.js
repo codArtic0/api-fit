@@ -1,5 +1,6 @@
 const prisma = require("../lib/prisma")
 const tacoServices = require("../services/tacoServices")
+const dailyServices = require("../services/dailyServices")
 
 exports.registrarRefeicao = async (req,res) =>{ 
     const idUser = Number(req.body.idUser)
@@ -29,7 +30,10 @@ exports.registrarRefeicao = async (req,res) =>{
             },
         });
 
-    return res.status(200).json(usuarioAtualizado)
+        const verificacao = await dailyServices.verificarMacrosDiarios(idUser)
+
+
+    return res.status(200).json({user: usuarioAtualizado, verificacao: verificacao})
     
     } catch (error) {
         return res.status(500).json({error: "Erro interno do servidor"})
@@ -37,7 +41,7 @@ exports.registrarRefeicao = async (req,res) =>{
 }
 
 exports.zerarRefeicao = async (req,res) => {
-    
+
     try{
     const idUser = Number(req.body.idUser)
     const usuarioAtualizado = await prisma.user.update({
