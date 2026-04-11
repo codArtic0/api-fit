@@ -18,37 +18,7 @@
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 id:
- *                   type: string
- *                   example: "1"
- *                 nome:
- *                   type: string
- *                 peso:
- *                   type: number
- *                 altura:
- *                   type: number
- *                 idade:
- *                   type: number
- *                 sexo:
- *                   type: string
- *                 atividade:
- *                   type: number
- *                 balancoCalorico:
- *                   type: number
- *                 alvo:
- *                   type: string
- *                 imc:
- *                   type: number
- *                 calorias:
- *                   type: number
- *                 proteina:
- *                   type: number
- *                 carboidrato:
- *                   type: number
- *                 gordura:
- *                   type: number
+ *               $ref: '#/components/schemas/User'
  *       400:
  *         description: Campos obrigatórios faltando
  *         content:
@@ -230,6 +200,70 @@
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/MacrosGramaResponse'
+ *       500:
+ *         description: Erro interno do servidor
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
+
+/**
+ * @swagger
+ * /api/daily/registrar:
+ *   post:
+ *     summary: Registrar refeição diária
+ *     description: Registra uma refeição para o usuário, atualizando os macronutrientes consumidos no dia
+ *     tags:
+ *       - Diário
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/DailyRegistrarRequest'
+ *     responses:
+ *       200:
+ *         description: Refeição registrada com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/DailyRegistrarResponse'
+ *       404:
+ *         description: Alimento não encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       500:
+ *         description: Erro interno do servidor
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
+
+/**
+ * @swagger
+ * /api/daily/zerar:
+ *   post:
+ *     summary: Zerar macronutrientes diários
+ *     description: Zera os contadores de macronutrientes consumidos no dia para o usuário
+ *     tags:
+ *       - Diário
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/DailyZerarRequest'
+ *     responses:
+ *       200:
+ *         description: Macronutrientes diários zerados com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/DailyZerarResponse'
  *       500:
  *         description: Erro interno do servidor
  *         content:
