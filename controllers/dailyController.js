@@ -35,3 +35,22 @@ exports.registrarRefeicao = async (req,res) =>{
         return res.status(500).json({error: "Erro interno do servidor"})
     }
 }
+
+exports.zerarRefeicao = async (req,res) => {
+    
+    try{
+    const idUser = Number(req.body.idUser)
+    const usuarioAtualizado = await prisma.user.update({
+            where: { id: idUser },
+            data: {
+                caloriasDoDia: 0,
+                proteinasDoDia: 0,
+                gordurasDoDia: 0,
+                carboidratosDoDia: 0
+            },
+        });
+        return res.status(200).json({message: "Zerou!", data: usuarioAtualizado})
+    } catch (error){
+        return res.status(500).json({error: "Erro interno do servidor"})
+    }
+}
