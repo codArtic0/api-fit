@@ -1,16 +1,11 @@
 const prisma = require("../lib/prisma")
+const tacoServices = require('../services/tacoServices');
 
 exports.getAlimentoByName = async (req, res) => {
     try {
         const name = req.query.name
-        const alimento = await prisma.alimento.findFirst({
-            where: {
-                nome:{
-                    contains: name,
-                    mode: 'insensitive'
-                }
-            }
-        })
+        const alimento = await tacoServices.encontrarAlimentoUnitario(name)
+        console.log(alimento)
         if (alimento){
             return res.status(200).json(alimento)
         }
@@ -25,14 +20,7 @@ exports.getAlimentoByName = async (req, res) => {
 exports.getManyAlimentos = async (req, res) =>{
     try {
         const name = req.query.name
-        const alimentos = await prisma.alimento.findMany({
-            where:{
-                nome:{
-                    contains: name,
-                    mode: 'insensitive'
-                }
-            }
-        })
+        const alimentos = await tacoServices.encontrarAlimentoEmQuantidade(name)
         if (alimentos.length>0){
             return res.status(200).json(alimentos)
         }
@@ -43,4 +31,22 @@ exports.getManyAlimentos = async (req, res) =>{
         return res.status(500).json({error: "Erro interno do servidor"})
     }
     
+}
+
+exports.calcularTacoPorGrama = async (req, res) =>{
+    console.log(req.body)
+    try {
+        const macros = {
+        calorias: req.body.calorias,
+        proteina: req.body.proteina,
+        carboidrato: req.body.carboidrato,
+        gordura: req.body.gordura
+    }
+
+    const macrosPorGrama = await tacoServices.calcularMacrosPorGrama(macros)
+    return res.status(200).json(macrosPorGrama)
+    
+    } catch (error) {
+        return res.status(500).json({error: "Erro interno do servidor"})
+    }
 }
