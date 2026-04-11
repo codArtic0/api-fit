@@ -4,9 +4,9 @@ const prisma = require('../lib/prisma');
 
 exports.createUser = async (req, res) => {
   try {
-    const { nome, peso, altura, idade, sexo, atividade, balancoCalorico, alvo } = req.body;
+    const { nome, peso, altura, idade, genero, atividade, balancoCalorico, alvo } = req.body;
 
-    if (!nome || !peso || !altura || !idade || !sexo || atividade === undefined || !balancoCalorico || !alvo) {
+    if (!nome || !peso || !altura || !idade || !genero || atividade === undefined || !balancoCalorico || !alvo) {
       return res.status(400).json({ error: "Preencha todos os campos obrigatórios" });
     }
 
@@ -20,7 +20,7 @@ exports.createUser = async (req, res) => {
       peso: dadosIMC.peso,
       altura: dadosIMC.altura,
       idade: Number(idade),
-      sexo: String(sexo).toUpperCase(),
+      genero: String(genero).toUpperCase(),
       atividade: Number(atividade),
       balancoCalorico: Number(balancoCalorico),
       alvo: String(alvo).toUpperCase()
@@ -34,7 +34,7 @@ exports.createUser = async (req, res) => {
       altura: dadosIMC.altura,
       imc,
       idade: dadosMacros.idade,
-      sexo: dadosMacros.sexo,
+      genero: dadosMacros.genero,
       atividade: dadosMacros.atividade,
       balancoCalorico: dadosMacros.balancoCalorico,
       alvo: dadosMacros.alvo,

@@ -1,9 +1,9 @@
 const macroService = require('../services/macrosServices');
 
 exports.calcularMacros = (req, res) => {
-  const { peso, altura, idade, sexo, atividade, balancoCalorico, alvo } = req.body;
+  const { peso, altura, idade, genero, atividade, balancoCalorico, alvo } = req.body;
 
-  if (!peso || !altura || !idade || !sexo || atividade === undefined) {
+  if (!peso || !altura || !idade || !genero || atividade === undefined) {
     return res.status(400).json({ error: "Preencha todos os campos obrigatórios" });
   }
 
@@ -11,14 +11,14 @@ exports.calcularMacros = (req, res) => {
     peso: Number(peso),
     altura: Number(altura),
     idade: Number(idade),
-    sexo: String(sexo).toUpperCase(),
+    genero: String(genero).toUpperCase(),
     atividade: Number(atividade),
     balancoCalorico: Number(balancoCalorico || 0),
     alvo: String(alvo)
   };
 
-  if (dados.sexo !== 'M' && dados.sexo !== 'F') {
-    return res.status(400).json({ error: "Sexo deve ser M ou F" });
+  if (dados.genero !== 'M' && dados.genero !== 'F') {
+    return res.status(400).json({ error: "genero deve ser M ou F" });
   }
 
   if (dados.atividade < 0 || dados.atividade > 4) {

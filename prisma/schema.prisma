@@ -16,7 +16,7 @@ model Alimento {
   gordura      Float?
 }
 
-enum Sexo {
+enum Genero {
   M
   F
 }
@@ -27,22 +27,26 @@ enum Alvo {
 }
 
 model User {
-  id               Int     @id @default(autoincrement())
-  nome             String
-  peso             Float?
-  altura           Float?
-  idade            Int?
-  sexo             Sexo?
-  atividade        Int?
-  balancoCalorico  Int?
-  alvo             Alvo?
-  imc              Float?
-  tmb              Float?
-  tdee             Float?
-  calorias         Float?
-  proteinas        Float?
-  gorduras         Float?
-  carboidratos     Float?
+  id                Int     @id @default(autoincrement())
+  nome              String
+  peso              Float
+  altura            Float
+  idade             Int
+  genero            Genero
+  atividade         Int
+  balancoCalorico   Int
+  alvo              Alvo
+  imc               Float
+  tmb               Float
+  tdee              Float
+  calorias          Float
+  proteinas         Float
+  gorduras          Float
+  carboidratos      Float
+  caloriasDoDia     Float?
+  proteinasDoDia    Float?
+  gordurasDoDia     Float?
+  carboidratosDoDia Float?
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 }
