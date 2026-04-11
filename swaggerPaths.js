@@ -208,3 +208,32 @@
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
+
+/**
+ * @swagger
+ * /api/taco/macrosPorGrama:
+ *   post:
+ *     summary: Calcular macronutrientes por grama de alimento
+ *     description: Recebe os macros de um JSON e retorna todos divididos por 100 (Tabela TACO usa macros por 100g de alimento)
+ *     tags:
+ *       - TACO (Alimentos)
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/MacrosGramaRequest'
+ *     responses:
+ *       200:
+ *         description: Macronutrientes por grama calculados com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/MacrosGramaResponse'
+ *       500:
+ *         description: Erro interno do servidor
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */

@@ -24,103 +24,55 @@ const options = {
           type: 'object',
           required: ['nome', 'peso', 'altura', 'idade', 'sexo', 'atividade', 'balancoCalorico', 'alvo'],
           properties: {
-            nome: {
-              type: 'string',
-              example: 'João Silva',
-              description: 'Nome do usuário'
+            nome: { type: 'string', example: 'João Silva' },
+            peso: { type: 'number', example: 75, description: 'Peso em kg' },
+            altura: { type: 'number', example: 180, description: 'Altura em cm' },
+            idade: { type: 'number', example: 30 },
+            sexo: { type: 'string', enum: ['M', 'F'], example: 'M' },
+            atividade: { 
+              type: 'number', 
+              enum: [0, 1, 2, 3, 4], 
+              description: '[0]:Sedentário, [1]:Leve, [2]:Moderado, [3]:Intenso, [4]:Muito Intenso' 
             },
-            peso: {
-              type: 'number',
-              example: 75,
-              description: 'Peso em kg'
-            },
-            altura: {
-              type: 'number',
-              example: 180,
-              description: 'Altura em centímetros'
-            },
-            idade: {
-              type: 'number',
-              example: 30,
-              description: 'Idade em anos'
-            },
-            sexo: {
-              type: 'string',
-              enum: ['M', 'F'],
-              example: 'M',
-              description: 'Sexo (M para masculino, F para feminino)'
-            },
-            atividade: {
-              type: 'number',
-              enum: [0, 1, 2, 3, 4],
-              example: 3,
-              description: 'Fator de atividade ([0] - 1.2=sedentário, [1] -1.375=leve, [2] - 1.55=moderado, [3] - 1.725=intenso, [4] - 1.9=muito intenso)'
-            },
-            balancoCalorico: {
-              type: 'number',
-              example: -500,
-              description: 'Balanço calórico em calorias (negativo para déficit, positivo para superávit)'
-            },
-            alvo: {
-              type: 'string',
-              enum: ['BULKING', 'CUTTING', 'MANUTENCAO'],
-              example: 'CUTTING',
-              description: 'Objetivo (BULKING ou CUTTING)'
-            }
-          }
-        },
-        IMCRequest: {
-          type: 'object',
-          required: ['peso', 'altura'],
-          properties: {
-            peso: {
-              type: 'number',
-              example: 75,
-              description: 'Peso em kg'
-            },
-            altura: {
-              type: 'number',
-              example: 180,
-              description: 'Altura em centímetros'
-            }
+            balancoCalorico: { type: 'number', example: -500 },
+            alvo: { type: 'string', enum: ['BULKING', 'CUTTING', 'MANUTENCAO'], example: 'CUTTING' }
           }
         },
         IMCResponse: {
           type: 'object',
           properties: {
-            imc: {
-              type: 'number',
-              example: 23.148148148148145
-            },
-            classificacao: {
-              type: 'string',
-              example: 'normal'
-            }
-          }
-        },
-        MacrosRequest: {
-          type: 'object',
-          required: ['peso', 'altura', 'idade', 'sexo', 'atividade', 'balancoCalorico', 'alvo'],
-          properties: {
-            peso: { type: 'number', example: 75 },
-            altura: { type: 'number', example: 180 },
-            idade: { type: 'number', example: 30 },
-            sexo: { type: 'string', enum: ['M', 'F'], example: 'M' },
-            atividade: { type: 'number', example: 3 },
-            balancoCalorico: { type: 'number', example: -500 },
-            alvo: { type: 'string', enum: ['BULKING', 'CUTTING'], example: 'CUTTING' }
+            imc: { type: 'number', example: 23.15 },
+            classificacao: { type: 'string', example: 'Normal' }
           }
         },
         MacrosResponse: {
           type: 'object',
           properties: {
-            tmb: {type: 'number', example: 1730},
-            tdee: {type: 'number', example: 2984.25},
+            tmb: { type: 'number', example: 1730 },
+            tdee: { type: 'number', example: 2984.25 },
             calorias: { type: 'number', example: 2484.25 },
             proteina: { type: 'number', example: 165 },
             gordura: { type: 'number', example: 60 },
             carboidrato: { type: 'number', example: 321.06 }
-            
+          }
+        },
+        MacrosGramaRequest: {
+          type: 'object',
+          required: ['calorias', 'proteina', 'carboidrato', 'gordura'],
+          properties: {
+            calorias: { type: 'number', example: 128 },
+            proteina: { type: 'number', example: 2.5 },
+            carboidrato: { type: 'number', example: 28.1 },
+            gordura: { type: 'number', example: 0.2 }
+          }
+        },
+        MacrosGramaResponse: {
+          type: 'object',
+          properties: {
+            calorias: { type: 'number', example: 1.28 },
+            proteina: { type: 'number', example: 0.025 },
+            carboidrato: { type: 'number', example: 0.281 },
+            gordura: { type: 'number', example: 0.002 }
           }
         },
         Alimento: {
@@ -138,10 +90,7 @@ const options = {
         Error: {
           type: 'object',
           properties: {
-            error: {
-              type: 'string',
-              example: 'Mensagem de erro'
-            }
+            error: { type: 'string', example: 'Mensagem de erro' }
           }
         }
       }
@@ -151,5 +100,4 @@ const options = {
 };
 
 const specs = swaggerJsdoc(options);
-
 module.exports = specs;
