@@ -22,13 +22,13 @@ const options = {
       schemas: {
         User: {
           type: 'object',
-          required: ['nome', 'peso', 'altura', 'idade', 'sexo', 'atividade', 'balancoCalorico', 'alvo'],
+          required: ['nome', 'peso', 'altura', 'idade', 'genero', 'atividade', 'balancoCalorico', 'alvo'],
           properties: {
             nome: { type: 'string', example: 'João Silva' },
             peso: { type: 'number', example: 75, description: 'Peso em kg' },
             altura: { type: 'number', example: 180, description: 'Altura em cm' },
             idade: { type: 'number', example: 30 },
-            sexo: { type: 'string', enum: ['M', 'F'], example: 'M' },
+            genero: { type: 'string', enum: ['M', 'F'], example: 'M' },
             atividade: { 
               type: 'number', 
               enum: [0, 1, 2, 3, 4], 

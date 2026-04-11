@@ -26,10 +26,10 @@ exports.encontrarAlimentoEmQuantidade = async (data) =>{
 exports.calcularMacrosPorGrama = async (data) =>{
 
     const macrosCalculados = {
-        calorias: data.calorias/100,
-        proteina: data.proteina/100,
-        carboidrato: data.carboidrato/100,
-        gordura: data.gordura/100
+        calorias: Number(data.calorias/100),
+        proteina: Number(data.proteina/100),
+        carboidrato: Number(data.carboidrato/100),
+        gordura: Number(data.gordura/100)
     }
 
     return macrosCalculados

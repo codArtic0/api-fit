@@ -7,6 +7,7 @@ const imcRoutes = require('./routes/imcRoutes')
 const macrosRoutes = require('./routes/macrosRoutes')
 const tacoRoutes = require('./routes/tacoRoutes')
 const userRoutes = require('./routes/userRoutes')
+const dailyRoutes = require('./routes/dailyRoutes')
 
 app.use(express.json())
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, { 
@@ -18,5 +19,6 @@ app.use('/api/imc', imcRoutes);
 app.use('/api/macros', macrosRoutes);
 app.use('/api/taco', tacoRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/daily', dailyRoutes)
 
 module.exports = app

@@ -32,7 +32,7 @@ model User {
   peso              Float
   altura            Float
   idade             Int
-  genero            Genero
+  genero            Genero?
   atividade         Int
   balancoCalorico   Int
   alvo              Alvo
