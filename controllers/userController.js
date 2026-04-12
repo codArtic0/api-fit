@@ -44,6 +44,10 @@ exports.createUser = async (req, res) => {
       proteinas: macros.proteinas,
       gorduras: macros.gorduras,
       carboidratos: macros.carboidratos,
+      caloriasDoDia: 0,
+      proteinasDoDia: 0,
+      gordurasDoDia: 0,
+      carboidratosDoDia: 0
     };
 
     const user = await prisma.user.create({ data: dadosUser });
@@ -51,6 +55,7 @@ exports.createUser = async (req, res) => {
     return res.status(201).json(user);
 
   } catch (error) {
+    console.log(error)
     return res.status(500).json({ error: "Erro interno ao processar os dados." });
   }
 }
