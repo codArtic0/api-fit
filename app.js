@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors');
 const app = express()
 const swaggerUi = require('swagger-ui-express')
 const specs = require('./swagger')
@@ -10,6 +11,7 @@ const userRoutes = require('./routes/userRoutes')
 const dailyRoutes = require('./routes/dailyRoutes')
 
 app.use(express.json())
+app.use(cors())
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, { 
   customCss: '.swagger-ui { font-family: Arial, sans-serif; }',
   customSiteTitle: 'API FIT - Documentação'
