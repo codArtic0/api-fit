@@ -35,6 +35,49 @@
 
 /**
  * @swagger
+ * /api/user/getUser:
+ *   get:
+ *     summary: Obter usuário por ID
+ *     description: Busca um usuário específico pelo seu ID
+ *     tags:
+ *       - Usuário
+ *     parameters:
+ *       - in: query
+ *         name: id
+ *         schema:
+ *           type: number
+ *         required: true
+ *         description: ID do usuário
+ *         example: 11
+ *     responses:
+ *       200:
+ *         description: Usuário encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       400:
+ *         description: ID do usuário obrigatório
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       404:
+ *         description: Usuário não encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       500:
+ *         description: Erro interno do servidor
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
+
+/**
+ * @swagger
  * /api/imc/calcular:
  *   post:
  *     summary: Calcular IMC
