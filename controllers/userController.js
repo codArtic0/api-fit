@@ -1,5 +1,6 @@
 const { calculadoraDeIMC } = require("../services/imcSevices");
 const { calculadoraDeMacros } = require("../services/macrosServices");
+const { userServices, encontrarUsuario } = require("../services/userServices")
 const prisma = require('../lib/prisma');
 
 exports.createUser = async (req, res) => {
@@ -58,4 +59,23 @@ exports.createUser = async (req, res) => {
     console.log(error)
     return res.status(500).json({ error: "Erro interno ao processar os dados." });
   }
+}
+
+exports.getUser = async(req, res) => {
+  try {
+    const id = Number(req.query.id)
+    if (!id) {
+      return res.status(400).json({ error: "Informe o ID do usuario" });
+    }
+      const user = await encontrarUsuario(id);
+      if (user){
+        return res.status(200).json(user)
+      }
+      else{
+        return res.status(404).json({error: "Não encontrado"})
+      }
+    } catch (error) {
+    return res.status(500).json({error: "Erro interno de servidor"})
+  }
+
 }
