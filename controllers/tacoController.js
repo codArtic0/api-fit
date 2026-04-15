@@ -18,7 +18,7 @@ exports.getAlimentoByName = async (req, res) => {
 
 exports.getManyAlimentos = async (req, res) =>{
     try {
-        const name = req.query.name
+        const name = decodeURIComponent(req.query.name.replace(/\+/g, ' '));
         const alimentos = await tacoServices.encontrarAlimentoEmQuantidade(name)
         if (alimentos.length>0){
             return res.status(200).json(alimentos)
