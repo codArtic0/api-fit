@@ -46,3 +46,10 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# Relatórios de cobertura de código (Code Coverage)
+coverage/
+*.lcov
+
+# Arquivos temporários do Jest
+.jest/
