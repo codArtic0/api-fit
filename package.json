@@ -4,10 +4,12 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "jest",
-    "dev": "nodemon server.js",
-    "test:watch": "jest --watchAll"
-  },
+  "test": "jest",
+  "dev": "nodemon server.js",
+  "build": "prisma generate", 
+  "start": "node server.js",
+  "test:watch": "jest --watchAll"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
