@@ -12,13 +12,20 @@ exports.encontrarAlimentoUnitario = async (data) => {
 }
 
 exports.encontrarAlimentoEmQuantidade = async (data) =>{
+    const palavras = data.split(' ').filter(p => p.trim() !== '');
+    
+    const condicoes = palavras.map(palavra => ({
+        nome: {
+            contains: palavra,
+            mode: 'insensitive'
+        }
+    }));
+
     const alimento = await prisma.alimento.findMany({
         where: {
-            nome:{
-                contains: data,
-                mode: 'insensitive'
-            }
-        }})
+            AND: condicoes
+        }
+    })
     return alimento
 }
 
